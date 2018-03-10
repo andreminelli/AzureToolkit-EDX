@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CognitiveService } from '../../common/services/cognitive.service';
 import { ImageResult } from '../../common/models/bingSearchResponse';
+import { ComputerVisionRequest, ComputerVisionResponse } from '../../common/models/computerVisionResponse';
 
 @Component({
     selector: 'search',
@@ -9,18 +10,35 @@ import { ImageResult } from '../../common/models/bingSearchResponse';
 })
 export class SearchComponent {
     searchResults: ImageResult[] | null;
-    isSearching = false;    
+    isSearching = false;
+    currentAnalytics: ComputerVisionResponse | null;
+    currentItem: ImageResult | null;
+    isAnalyzing = false;
 
-    constructor(private cognitiveService: CognitiveService) { 
+    constructor(private cognitiveService: CognitiveService) {
         this.searchResults = null;
-     }
+        this.currentAnalytics = null;
+        this.currentItem = null;
+    }
 
     search(searchTerm: string) {
         this.searchResults = null;
+        this.currentAnalytics = null;
         this.isSearching = true;
         this.cognitiveService.searchImages(searchTerm).subscribe(result => {
             this.searchResults = result.value;
             this.isSearching = false;
         });
+    }
+
+    analyze(result: ImageResult) {
+        this.currentItem = result;
+        this.currentAnalytics = null;
+        this.isAnalyzing = true;
+        this.cognitiveService.analyzeImage({ url: result.thumbnailUrl } as ComputerVisionRequest).subscribe(result => {
+            this.currentAnalytics = result;
+            this.isAnalyzing = false;
+        });
+        window.scroll(0, 0);
     }
 }
