@@ -9,6 +9,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { SearchComponent } from './components/search/search.component';
+import { AppCommonModule } from './common/common.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { SearchComponent } from './components/search/search.component';
         CommonModule,
         HttpModule,
         FormsModule,
+        AppCommonModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
