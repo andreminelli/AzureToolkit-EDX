@@ -21,7 +21,7 @@ export class CognitiveService {
     }
 
     analyzeImage(request: ComputerVisionRequest): Observable<ComputerVisionResponse> {
-        return this.http.post('https://eastus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description,Tags', this.computerVisionAPIKey, request)
+        return this.http.post('https://eastus.api.cognitive.microsoft.com/vision/v1.0/analyze?visualFeatures=Description,Tags,Faces', this.computerVisionAPIKey, request)
             .map(response => response.json() as ComputerVisionResponse)
             .catch(this.handleError);
     }
