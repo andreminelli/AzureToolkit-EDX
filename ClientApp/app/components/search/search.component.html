@@ -41,7 +41,7 @@
                     *ngFor="let tag of currentAnalytics?.tags">{{tag.name}}</span>
             </div>
             <h3 *ngIf="currentAnalytics?.faces?.length > 0">
-                <span class="">Peopel count: {{currentAnalytics.faces.length}}</span>
+                <span class=""># people found: {{currentAnalytics.faces.length}}</span>
             </h3>
         </div>
         <div *ngIf="isAnalyzing">

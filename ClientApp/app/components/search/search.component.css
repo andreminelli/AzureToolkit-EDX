@@ -38,6 +38,15 @@
 .face-rectangle-m {
     border-color: #0078d7;
 }
+.face-rectangle:hover{
+    z-index:100
+}
+.face-rectangle:hover .face-info{
+    visibility:visible
+}
+.face-rectangle:active .face-info{
+    visibility:visible
+}
 .face-rectangle-f {
     border-color: #ba0b93;
 }
