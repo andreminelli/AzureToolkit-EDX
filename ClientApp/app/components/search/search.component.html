@@ -14,7 +14,24 @@
         <b>Selected Photo</b>
     </h2>
     <div class="currentItem card" *ngIf="currentAnalytics || isAnalyzing">
-        <img src="{{currentItem?.thumbnailUrl}}" />
+        <div class="image-container">
+            <img src="{{currentItem?.thumbnailUrl}}" />
+            <div *ngFor="let face of currentAnalytics?.faces" class="face-rectangle" [ngClass]="face.gender == 'Male' ? 'face-rectangle-m' : 'face-rectangle-f'"
+                [ngStyle]="{ top: (face.top / currentAnalytics.height) + '%', left: (face.left / currentAnalytics.width) + '%', width: face.width + 'px', height: face.height + 'px' }">
+                <table class="table-naked face-info">
+                    <tbody>
+                        <tr>
+                            <th>Gender</th>
+                            <td>{{face.gender}}</td>
+                        </tr>
+                        <tr>
+                            <th>Age</th>
+                            <td>{{face.age}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <div *ngIf="!isAnalyzing">
             <h4>
                 <b>{{currentAnalytics?.description.captions[0].text}}</b>
@@ -23,9 +40,9 @@
                 <span class="tag label" [ngClass]="{'label-default': tag.confidence >= .75, 'label-warning': tag.confidence >= .5 && tag.confidence < .75, 'label-danger': tag.confidence < .5}"
                     *ngFor="let tag of currentAnalytics?.tags">{{tag.name}}</span>
             </div>
-            <div *ngIf="currentAnalytics?.faces?.length > 0">
-                <span class="label">Peopel count: {{currentAnalytics.faces.length}}</span>
-            </div>
+            <h3 *ngIf="currentAnalytics?.faces?.length > 0">
+                <span class="">Peopel count: {{currentAnalytics.faces.length}}</span>
+            </h3>
         </div>
         <div *ngIf="isAnalyzing">
             <h4>Analyzing Photo</h4>
