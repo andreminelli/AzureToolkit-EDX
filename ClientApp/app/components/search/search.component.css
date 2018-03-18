@@ -16,18 +16,19 @@
 .currentItem {
     display: flex;
 }
-.currentItem div {
+/* .currentItem div {
     margin: 20px;
-}
+} */
 .tag {
     margin-right: 5px;
     font-size: 14px;
 }
-.demo-img-container {
+.image-container {
     display: inline-block;
     position: relative;
     max-height: 100%;
     max-width: 100%;
+    margin: 0;
 }
 .face-rectangle {
     position: absolute;
@@ -39,4 +40,22 @@
 }
 .face-rectangle-f {
     border-color: #ba0b93;
+}
+.face-rectangle .face-info {
+    visibility: hidden;
+    width: auto;
+    background-color: gray;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    position: absolute;
+    z-index: 100;
+    top: -5px;
+    right: 110%;
+    font-size: 12px;
+}
+.table-naked {
+    border: none;
+    border-collapse: separate;
+    background-color: transparent;
 }
